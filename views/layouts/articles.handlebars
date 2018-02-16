@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Goldman Times</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" media="screen" type="text/css" href="../style/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../js/main.js"></script>
+	<meta property="og:url"                content="{{content.url}}" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="{{content.titleContent}}" />
+	<meta property="og:description"        content="{{content.descContent}}" />
+	<meta property="og:image"              content="{{content.imageContent}}" />
+	<!--<link rel="canonical" href="{{content.url}}">-->
+	<meta name="twitter:site" content="{{content.url}}">
+	<meta name="twitter:title" content="{{content.titleContent}}">
+	<meta name="twitter:description" content="{{content.descContent}}">
+	<meta name="twitter:image" content="{{content.imageContent}}">
+	<meta name="twitter:domain" content="goldmantimes.com">
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.12';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="content">
+		<section class="header">
+			 <!-- Load Facebook SDK for JavaScript -->
+			<!--<div class="inside-sections">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Articles</a></li>
+					<li><a href="#">Travels</a></li>
+					<li><a href="#">Opinions</a></li>
+					<li><a href="#">Funny</a></li>
+					<li><a href="#">Trending</a></li>
+				</ul>
+			</div>-->
+			<div class="header-inner flex">
+				<!--<div class="sections">
+					Sections
+				</div>
+				<div class="home button-header">
+					<div>
+						Home
+					</div>
+				</div>
+				<div class="search button-header">
+					<div>
+						Search
+					</div>
+				</div>-->
+
+
+				<!--<div class="membership">
+					<a class="membership-link" href="">About membership</a>
+				</div>-->
+				<div class="page-title">
+					<a href="/"><h1>GOLDMAN TIMES</h1></a>
+				</div>
+				<div class="sign flex">
+					<!--<div class="sign-up button">
+						Subscribe now
+					</div>
+					<div class="sign-in button">
+						Log in
+					</div>-->
+					<div class="sign-in button upload-button flex">
+						{{#equalArrayString owner email}}
+						<div class="upload-inner">
+							Upload
+						</div>
+						{{/equalArrayString}}
+						<div class="login-inner follow">
+							<a href="{{oauthUrl}}">Login</a>
+						</div>
+						{{#equalArrayString owner email}}
+						<div id="upload-new" class="upload hidden flex">
+							Upload Article
+							<div class="new-url new">
+								Url
+								<input type="text" name="new-link" id="new-link">
+							</div>
+							<!--<div class="new-tags new">
+								Separate the tags with a ","
+								<input type="text" name="new-tag" id="new-tag">
+							</div>
+							<div class="new-category new">
+								Select a category
+								<select>
+									<option>Category 1</option>
+									<option>Category 2</option>
+									<option>Category 3</option>
+								</select>
+							</div>-->
+							<div id="save-button" class="new button">
+								Save
+							</div>
+						</div>
+						{{/equalArrayString}}
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="main-content">
+			<div class="article-creator-top flex">
+				<div class="article-creator-top-bottom next-to-image flexcolumn">
+					<div class="bottom flex">
+						<div class="article-creator-top-date margin-right">
+							{{content.date}}
+						</div>
+					</div>
+				</div>
+				{{#equalArrayString owner email}}
+				<div class="article-creator-top-edit flex">
+					<div class="edit-inner follow">
+						Edit
+					</div>
+					<div class="delete-inner follow" data-filename="{{content.filename}}">
+						X
+					</div>
+					<div id="upload-edit" class="upload hidden flex">
+						Upload Article
+						<div id="filename" val="{{content.filename}}" style="display:none" type="hidden">
+							{{content.filename}}
+						</div>
+						<div class="new-url new">
+							Url
+							<input type="text" name="new-link" id="edit-link">
+						</div>
+						<!--<div class="new-tags new">
+							Separate the tags with a ","
+							<input type="text" name="new-tag" id="new-tag">
+						</div>
+						<div class="new-category new">
+							Select a category
+							<select>
+								<option>Category 1</option>
+								<option>Category 2</option>
+								<option>Category 3</option>
+							</select>
+						</div>-->
+						<div id="save-button-edit" class="new button">
+							Save
+						</div>
+					</div>
+				</div>
+				{{/equalArrayString}}
+			</div>
+			<div class="article-title">
+				<h1>{{content.titleContent}}</h1>
+			</div>
+			<div class="article-content inside-article">
+				{{{content.body}}}
+			</div>
+			<div class="article-creator-bottom flex">
+				<div class="article-box-creator flex">
+					<div class="next-to-image flex flexcolumn">
+						<div class="article-box-creator-name">
+							<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</div>
+					</div>
+				</div>
+				<div class="article-creator-left flex">
+					<div class="article-creator-top-edit flex">
+						<div class="fb-share-button" data-href="{{content.url}}" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2Farticle%2F23&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+	</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# ignore all logs
+node_modules/
+base-site/
+complete-site/

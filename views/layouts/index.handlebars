@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Goldman Times</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" media="screen" type="text/css" href="style/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+	<div class="content">
+		<section class="header">
+			<!--<div class="inside-sections">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Articles</a></li>
+					<li><a href="#">Travels</a></li>
+					<li><a href="#">Opinions</a></li>
+					<li><a href="#">Funny</a></li>
+					<li><a href="#">Trending</a></li>
+				</ul>
+			</div>-->
+			<div class="header-inner flex">
+				<!--<div class="sections">
+					Sections
+				</div>
+				<div class="home button-header">
+					<div>
+						Home
+					</div>
+				</div>
+				<div class="search button-header">
+					<div>
+						Search
+					</div>
+				</div>-->
+
+
+				<!--<div class="membership">
+					<a class="membership-link" href="">About membership</a>
+				</div>-->
+				<div class="page-title">
+					<a href="/"><h1>GOLDMAN TIMES</h1></a>
+				</div>
+				<div class="sign flex">
+					<!--<div class="sign-up button">
+						Subscribe now
+					</div>
+					<div class="sign-in button">
+						Log in
+					</div>-->
+					<div class="sign-in button upload-button flex">
+						{{#equalArrayString owner email}}
+						<div class="upload-inner">
+							Upload
+						</div>
+						{{/equalArrayString}}
+						<div class="login-inner follow">
+							<a href="{{oauthUrl}}">Login</a>
+						</div>
+						{{#equalArrayString owner email}}
+						<div id="upload-new" class="upload hidden flex">
+							Upload Article
+							<div class="new-url new">
+								Url
+								<input type="text" name="new-link" id="new-link">
+							</div>
+							<!--<div class="new-tags new">
+								Separate the tags with a ","
+								<input type="text" name="new-tag" id="new-tag">
+							</div>
+							<div class="new-category new">
+								Select a category
+								<select>
+									<option>Category 1</option>
+									<option>Category 2</option>
+									<option>Category 3</option>
+								</select>
+							</div>-->
+							<div id="save-button" class="new button">
+								Save
+							</div>
+						</div>
+						{{/equalArrayString}}
+					</div>
+				</div>
+			</div>
+		</section>
+		{{#each content}}
+			<section class="main-content">
+				
+				<div class="article-creator-top flex">
+					<div class="article-creator-top-bottom next-to-image flexcolumn">
+						<div class="bottom flex">
+							<div class="article-creator-top-date margin-right">
+								{{this.date}}
+							</div>
+						</div>
+					</div>
+					{{#equalArrayString ../owner ../email}}
+					<div class="article-creator-top-edit flex">
+						<div class="edit-inner follow">
+							Edit
+						</div>
+						<div class="delete-inner follow" data-filename="{{this.filename}}">
+							X
+						</div>
+						<div id="upload-edit" class="upload hidden flex">
+							Upload Article
+							<div id="filename" val="{{this.filename}}" style="display:none" type="hidden">
+								{{this.filename}}
+							</div>
+							<div class="new-url new">
+								Url
+								<input type="text" name="new-link" id="edit-link">
+							</div>
+							<!--<div class="new-tags new">
+								Separate the tags with a ","
+								<input type="text" name="new-tag" id="new-tag">
+							</div>
+							<div class="new-category new">
+								Select a category
+								<select>
+									<option>Category 1</option>
+									<option>Category 2</option>
+									<option>Category 3</option>
+								</select>
+							</div>-->
+							<div id="save-button-edit" class="new button">
+								Save
+							</div>
+						</div>
+					</div>
+					{{/equalArrayString}}
+				</div>
+				<a href="article/{{this.url}}">
+					<div class="article-title">
+						<h1>{{this.titleContent}}</h1>
+					</div>
+					<div class="article-content">
+						
+						<img src="{{this.imageContent}}">
+						{{{this.descContent}}}
+					</div>
+				</a>
+			<div class="divider"></div>
+			</section>
+		{{/each}}
+		<div class="pagination pagination-centered">
+		  <ul>
+		  	{{#checkPage pagination.page pagination.pageCount pagination.postNumber}}
+			    {{#paginate pagination type="first"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">First</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="previous"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Prev</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="middle" limit="7"}}
+			      <li {{#if active}}class="active"{{/if}}><a href="?p={{n}}">{{n}}</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="next"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Next</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="last"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Last</a></li>
+			    {{/paginate}}
+		    {{/checkPage}}
+		  </ul>
+		</div>
+	</div>
+</body>
+</html>
